@@ -1,4 +1,6 @@
 const koaCombine = require('koa-combine-routers');
-const login = require('./login')
+const login = require('./login.js');
 
-module.exports = koaCombine(login)
+const routers = koaCombine(login);
+
+module.exports = routers;
