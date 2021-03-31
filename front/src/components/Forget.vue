@@ -1,16 +1,9 @@
 <template>
   <a-form :form="form" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }" @submit="handleSubmit">
-    <a-form-item label="账号">
+    <a-form-item label="邮箱">
       <a-input
-        placeholder="请输入账号"
-        v-decorator="['name', { rules: [{ required: true, message: '请输入账号!' }] }]"
-      />
-    </a-form-item>
-    <a-form-item label="密码">
-      <a-input
-        type="password"
-        placeholder="请输入密码"
-        v-decorator="['pwd', { rules: [{ required: true, message: '请输入密码!' }] }]"
+        placeholder="请输入邮箱"
+        v-decorator="['email', { rules: [{ required: true, message: '请输入邮箱!' }] }]"
       />
     </a-form-item>
     <a-form-item label="验证码">
@@ -24,7 +17,6 @@
       <a-button type="primary" html-type="submit">
         提交
       </a-button>
-      <span class="forget-pwd" @click="forgetPwd">忘记密码</span>
     </a-form-item>
   </a-form>
 </template>
@@ -32,7 +24,7 @@
 <script>
 import {getCaptcha} from '../apis/login'
 export default {
-  name:'Login',
+  name:'Forget',
   created () {
     this.getCaptcha();
   },
@@ -56,9 +48,6 @@ export default {
       getCaptcha().then(res => {
         this.code = res.data.data;
       }).catch(e => {this.$message.error('请求验证码失败');})
-    },
-    forgetPwd(){
-      this.$emit('forgetPwd')
     }
   },
 };

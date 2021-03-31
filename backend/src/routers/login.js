@@ -1,8 +1,9 @@
 const Router = require('koa-router');
-const login  = require('../apis/login.js');
+const loginObj  = require('../apis/login.js');
 
 const router = new Router();
 
-router.get('/login', login)
+router.get('/login', loginObj.login);
+router.get('/getCaptcha', loginObj.getCaptcha);
 
 module.exports =  router

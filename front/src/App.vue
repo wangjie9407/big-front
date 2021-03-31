@@ -1,15 +1,22 @@
-<script>
-  export default {
-    name:'App',
-    render(){
-      return(
-        <div id="app">
-          <router-view/>
-        </div>
-      )
-    }
-  }
-</script>
-<style lang="scss">
+<template>
+  <div id="app">
+   <Layout/>
+  </div>
+</template>
 
+<script>
+import Layout from './components/Layout';
+export default {
+  name: 'App',
+  components: {
+    Layout,
+  },
+}
+</script>
+
+<style lang="less">
+#app{
+  height: 100%;
+  width: 100%;
+}
 </style>
