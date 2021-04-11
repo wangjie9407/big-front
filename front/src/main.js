@@ -5,9 +5,12 @@ import store from './store'
 import Antd from 'ant-design-vue';
 import './styles/theme.less';
 import './styles/global.less';
+import changeBreadcrumb from './router/breadcrumb';
 
 Vue.config.productionTip = false
 Vue.use(Antd);
+// 设置面包屑
+changeBreadcrumb(router, store);
 
 new Vue({
   router,

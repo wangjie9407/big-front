@@ -33,20 +33,19 @@ export default {
       formLayout: 'horizontal',
       form: this.$form.createForm(this, { name: 'coordinated' }),
       code:null,
+      codeTxt:''
     };
   },
   methods: {
     handleSubmit(e) {
       e.preventDefault();
-      this.form.validateFields((err, values) => {
-        if (!err) {
-          console.log('Received values of form: ', values);
-        }
-      });
+      this.form.validateFields();
     },
     getCaptcha(){
       getCaptcha().then(res => {
-        this.code = res.data.data;
+        const {data, text} = res.data
+        this.code = data;
+        this.codeTxt = text;
       }).catch(e => {this.$message.error('请求验证码失败');})
     }
   },

@@ -8,22 +8,11 @@
         :default-selected-keys="['2']"
         :style="{ lineHeight: '64px' }"
       >
-        <a-menu-item key="1">
-          nav 1
-        </a-menu-item>
-        <a-menu-item key="2">
-          nav 2
-        </a-menu-item>
-        <a-menu-item key="3">
-          nav 3
-        </a-menu-item>
       </a-menu>
     </a-layout-header>
     <a-layout-content style="padding: 0 50px">
       <a-breadcrumb style="margin: 16px 0">
-        <a-breadcrumb-item>Home</a-breadcrumb-item>
-        <a-breadcrumb-item>List</a-breadcrumb-item>
-        <a-breadcrumb-item>App</a-breadcrumb-item>
+        <a-breadcrumb-item v-for="p in pathList" :key="p" :href="p">{{p}}</a-breadcrumb-item>
       </a-breadcrumb>
       <div :style="{ background: '#fff', padding: '24px', minHeight: '280px' }">
         <router-view></router-view>
@@ -34,6 +23,21 @@
     </a-layout-footer>
   </a-layout>
 </template>
+<script>
+import {mapGetters} from 'vuex'
+export default {
+  name:'layout',
+  data() {
+    return {
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'pathList'
+    ]),
+  },
+}
+</script>
 <style>
 #components-layout-demo-top .logo {
   width: 120px;

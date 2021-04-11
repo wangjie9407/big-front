@@ -16,10 +16,12 @@
     <a-form-item label="验证码">
       <a-input
         placeholder="请输入验证码"
-        v-decorator="['code', { rules: [{ required: true, message: '请输入验证码!' }] }]"
+        v-decorator="['code', { rules: [{ required: true, message: '请输入验证码!' }, 
+                                        { validator: (rule, val, callback) => {codeCheck(rule, val, callback)}}
+                                       ]}]"
       />
     </a-form-item>
-      <div style="padding-left: 352px;margin-bottom:25px" class="code-box" @click="getCaptcha" v-html="code"></div>
+      <div style="padding-left: 352px;margin-bottom:25px;width:150px;" class="code-box" @click="getCaptcha" v-html="code"></div>
     <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
       <a-button type="primary" html-type="submit">
         提交
@@ -38,25 +40,38 @@ export default {
   },
   data() {
     return {
-      formLayout: 'horizontal',
-      form: this.$form.createForm(this, { name: 'coordinated' }),
-      code:null,
+      formLayout: 'horizontal', // 表单布局
+      form: this.$form.createForm(this, { name: 'Login' }), // 表单对象
+      code:null, // 验证码图片
+      codeTxt: '', // 验证码文本
     };
   },
   methods: {
+    // 表单提交
     handleSubmit(e) {
       e.preventDefault();
-      this.form.validateFields((err, values) => {
-        if (!err) {
-          console.log('Received values of form: ', values);
-        }
-      });
+      this.form.validateFields();
     },
+    // 获取一验证码
     getCaptcha(){
       getCaptcha().then(res => {
-        this.code = res.data.data;
+        const {data,text} = res.data
+        this.code  = data;
+        this.codeTxt = text;
       }).catch(e => {this.$message.error('请求验证码失败');})
     },
+    // 验证码校验
+    codeCheck(rule, val, callback){
+      if(!val) return;
+      if(val.length<4 || val.length>4) {
+        callback('请确认验证码的长度')
+      } 
+      if(val.length==4 && (val !== this.codeTxt && val !== this.codeTxt.toLowerCase())){
+        callback('您输入的验证码有误，请重输')
+      }
+      callback()
+    },
+    // 跳转至忘记密码
     forgetPwd(){
       this.$emit('forgetPwd')
     }
