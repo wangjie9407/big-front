@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <button id="on">订阅</button>
+    <button id="emit">发布</button>
+    <script>
+        /**
+            发布订阅模式： 通过$on、$emit方法创建发布者订阅者
+                $on: 订阅者： 订阅者监听一个事件名,并定义它的回调函数
+                $emit: 发布者，发布者发布一个事件，传递该事件对应的参数,并调用订阅者的回调函数
+        */
+
+        class Observe{
+            eventObj = {};
+
+            $emit(eventName, val){
+                this.eventObj[eventName](val);
+            }
+            $on(eventName, cab){
+                this.eventObj[eventName] = cab;
+            }
+        }
+
+        const obs = new Observe();
+        const onBtn = document.getElementById('on');
+        const emitBtn = document.getElementById('emit')
+        onBtn.addEventListener('click', () => {
+            obs.$on('box', (str) => {
+                document.getElementById('box').innerText = str
+            })
+        })
+        emitBtn.addEventListener('click', () => {
+            obs.$emit('box','我是你爸爸我真伟大，养你这么大')
+        })
+
+    </script>
+</body>
+</html>
