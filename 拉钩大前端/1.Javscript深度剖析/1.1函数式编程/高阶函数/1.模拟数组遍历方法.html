@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Arr{
+            constructor(arr){
+                this.arr = arr;
+            }
+
+            // 模拟Array.map
+            map(fn) {
+                const res = [];
+                for(let val of this.arr){
+                    res.push(fn(val))
+                }
+                return res;
+            }
+
+            // 模拟filter
+            filter(fn){
+                const res = [];
+                for(let val of this.arr){
+                    let flag = fn(val);
+                    if(flag) res.push(val)
+                }
+                return res;
+            }
+
+            // 模拟some
+            some(fn){
+                for(let val of this.arr){
+                        if(fn(val)) {
+                         return true;
+                    }
+                }
+            }
+        }
+        const arr = new Arr([1,2,3,4,5,6,7,9]) ;
+
+        const arr2 =  arr.map((val) => val + 2);
+        const arr3 = arr.filter(val => val % 2 == 0);
+        const arr4 = arr.some(val => val % 2 == 0);
+        console.log(arr2)
+        console.log(arr3)
+        console.log(arr4)
+
+    </script>
+</body>
+</html>

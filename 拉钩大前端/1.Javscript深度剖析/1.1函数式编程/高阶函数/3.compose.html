@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+    <script>
+             /**
+                * 
+                * compose 1.复合函数，1将多个功能单一，代码简短的函数放进数组内当成参数，传入compose函数中，拼接成一个多功能的函数
+                *         2.每个函数的执行结果会当成为下一个函数的参数，默认函数自右向左执行
+             */
+            const compose = (...funcs) => (val) => funcs.reverse().reduce((res,fn) => (fn(res)), val);
+
+            function add1(val){
+                return val + 1
+            }
+
+
+            function add2(val){
+                return val + 2
+            }
+
+
+            function add3(val){
+                return val + 3
+            }
+
+            const add = compose(add3, add2, add1)
+
+            console.log(add(1))
+    </script>
+    </body>
+</html>

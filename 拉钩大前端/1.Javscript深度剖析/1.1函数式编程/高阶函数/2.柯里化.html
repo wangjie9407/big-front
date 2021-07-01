@@ -1,0 +1,40 @@
+// loadsh 中有个curry方法可以将函数转化为柯里化函数
+
+const _ = require('loadsh');
+
+function sum(a,b,c){
+    return a + b + c;
+}
+
+const add1 = _.curry(sum)(1);
+const add2 = _.curry(sum)(1);
+
+console.log(add1(2,3));
+console.log(add2(3,4))
+
+// 模拟 loadsh中的curry函数
+
+function _curry(func){
+    // curry函数的核心思想是多次使用闭包缓存多次传入的参数并拼接到一起，当参数长度大于等于原函数的参数长度是，即调用原函数，并返回结果
+    return function $func(...args){
+        // 注意这里是args.length，不是$func.length，因为Function.length表达的是函数必传参数的长度，而$func函数的必传函数长度不固定
+        if(args.length < func.length){
+            // 这里还使用一次闭包是为了防止参数长度不够时，$func提前进入递归调用
+            return function(){
+                return $func(...[...args,...Array.from(arguments)])
+            }
+        }
+        // 当传入的参数长度足够时，返回原函数的调用结果
+        return func(...args)
+    }
+}
+/**
+ *   总结：loadsh的curry方法并不是严格的将原函数转化为柯里化函数，只是采用了柯里化函数的思想，当传入的参数只有一部分时，将该部分参数缓存起来
+ * 最终参数足够时，一次性返回函数的执行结果，并没有将原函数部分执行
+ */
+
+const add3 = _curry(sum)(1);
+const add4 = _curry(sum)(1);
+
+console.log(add3(2,3));
+console.log(add4(3,4))

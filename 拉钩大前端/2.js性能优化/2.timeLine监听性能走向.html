@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <button id="btn">add</button>
+        <div id="box"></div>
+        <script>
+            document.getElementById('btn').addEventListener('click', () => {
+                const box = document.getElementById('box')
+                const str = (Math.random() * 1000000000000).toFixed(2).toString();
+                box.innerHTML += `${box.innerHTML}<p>${str}</p`
+            })
+        </script>
+    </body>
+</html>
