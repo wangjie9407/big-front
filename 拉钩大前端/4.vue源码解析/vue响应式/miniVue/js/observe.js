@@ -19,10 +19,15 @@ class Observe{
 
     defineReactive(obj,key,val){
         const self = this;
+        let dep = new Dep()
         Object.defineProperty(obj,key,{
             enumerable: true,
             configurable: true,
             get(){
+                // 收集依赖
+                if(Dep.target){
+                    dep.addSub(Dep.target)
+                }
                 console.log('get data')
                 return val
             },
@@ -33,6 +38,8 @@ class Observe{
                 if(typeof newV == 'object' && !Array.isArray(newV)){
                     self._walk(newV)
                 }
+                // 发送通知
+                dep.notify();
             }
         })
     }
