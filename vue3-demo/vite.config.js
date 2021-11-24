@@ -1,14 +1,26 @@
 import { defineConfig } from 'vite'
+import {resolve} from 'path' 
 import vue from '@vitejs/plugin-vue'
-import {resolve} from 'path'
+import styleImport from 'vite-plugin-style-import';
+import vueJsx from "@vitejs/plugin-vue-jsx";
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
-  resolve: {
-    // 目录别名
+  plugins: [
+    vue(),
+    vueJsx(),
+    styleImport({
+      libs: [
+        {
+          libraryName: 'vant',
+          esModule: true,
+          resolveStyle: (name) => `vant/es/${name}/style`,
+        },
+      ],
+    }),
+  ],
+  resolve:{
     alias:{
-      '@': resolve(__dirname,'./src')
-    },
+      "@": resolve(__dirname, "/src"),
+    }
   },
 })

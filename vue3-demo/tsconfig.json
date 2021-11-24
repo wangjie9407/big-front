@@ -1,31 +1,42 @@
 {
-    "compilerOptions": {
-      "target": "esnext",
-      "module": "esnext",
-      "moduleResolution": "node",
-      "strict": true,
-      "jsx": "preserve",
-      "skipLibCheck": true,
-      "sourceMap": true,
-      "resolveJsonModule": true,
-      "noUnusedLocals": true,
-      "esModuleInterop": true,
-      "noImplicitAny": false,
-      "lib": ["esnext", "dom"],
-      "baseUrl": ".",
-      "paths": {
-        "@/*": ["src/*"]
-      }
-    },
-    "include": [
-      "src/**/*.ts",
-      "src/**/*.d.ts",
-      "src/**/*.tsx",
-      "src/**/*.vue",
-      "types/**/*.d.ts",
-      "**/*.ts",
-      "components.d.ts"
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "lib": [
+      "esnext",
+      "dom"
     ],
-    "exclude": ["node_modules"]
-  }
-  
+    "baseUrl": "*",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.jsx",
+    "src/**/*.vue",
+    "types/**/*.d.ts",
+    "**/*.ts",
+    "components.d.ts",
+    "babel.config.js",
+    "vite.config.js",
+    "src/views/Login/login.tsx",
+    "src/views/Home/home.tsx",
+    "src/router/index.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

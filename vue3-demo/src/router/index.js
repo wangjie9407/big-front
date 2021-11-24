@@ -1,24 +1,12 @@
-import VueRouter from 'vue-router'
+import {VueRouter} from 'vur-router'
 
-export default VueRouter.createRouter({
-    routes:[
-        {
-            path:'/',
-            directives:'/demo'
-        },
-        {
-            path:'/demo',
-            component: () => import('@/views/layout.vue'),
-            children:[
-                {
-                    path: '/v3-button',
-                    component: () => ('@/components/demo/v3-button.vue'),
-                    meta:{
-                        title:'自定义button组件'
-                    }
-                }
-            ]
-        }
-    ],
+const router = VueRouter.createRouter({
     history: VueRouter.createWebHashHistory(),
-})
+    routes:{
+        { path: '/', redirect: '/home' },
+        {path:'home', component: ()=> import('@/views/Home/home.jsx')},
+        {path:'login', component: ()=> import('@/views/Login/login.vue')},
+    }, 
+  })
+
+  export default router

@@ -1,6 +1,15 @@
 import { createApp } from 'vue'
-// import router from '@/router/index.js'
 import App from './App.vue'
+import store from './store'
+
+// 引入vant组件
+import { Form, Field, CellGroup } from 'vant';
+
 const app = createApp(App)
-// app.use(router)
+
+app.use(Form)
+    .use(Field)
+    .use(CellGroup)
+
+app.use(store)
 app.mount('#app')
