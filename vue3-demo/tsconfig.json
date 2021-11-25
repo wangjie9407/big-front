@@ -15,12 +15,12 @@
       "esnext",
       "dom"
     ],
-    "baseUrl": "*",
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "src/*"
       ]
-    }
+    },
   },
   "include": [
     "src/**/*.ts",
@@ -34,7 +34,7 @@
     "vite.config.js",
     "src/views/Login/login.tsx",
     "src/views/Home/home.tsx",
-    "src/router/index.js"
+    "src/router/index"
   ],
   "exclude": [
     "node_modules"

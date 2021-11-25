@@ -1,15 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import store from './store'
-
-// 引入vant组件
-import { Form, Field, CellGroup } from 'vant';
+import router from './router'
+import useVants from '@/utils/vant'
 
 const app = createApp(App)
 
-app.use(Form)
-    .use(Field)
-    .use(CellGroup)
+useVants(app)
 
 app.use(store)
+   .use(router)
 app.mount('#app')
