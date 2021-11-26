@@ -33,7 +33,7 @@ import { useRouter } from 'vue-router'
 import { UserInfoType, UserItemType } from '@/apis/models/LoginModal'
 import { register, login } from '@/apis/service/user'
 import { Toast } from 'vant';
-import Tools from '@/utils/Tools'
+import { setLocal } from '@/utils/Tools'
 import md5 from 'js-md5'
 
 const router = useRouter()
@@ -47,7 +47,6 @@ const userList: UserItemType[] = reactive([
     { label: '账号', key: 'loginName',type:'text' },
     { label: '密码', key: 'password', type: 'password' },
 ])
-
 // 返回
 const getBack = () => {
     router.go(-1)
@@ -70,7 +69,8 @@ const onSubmit = async () => {
         return
     }
     Toast.success(`${key == 'login' ? '登录' : '注册'}成功`)
-    Tools.setLocal(`${userInfo.loginName}`, JSON.stringify(userInfo))
+    setLocal(`${userInfo.loginName}`, JSON.stringify(userInfo))
+    setLocal('vue3-demo-token', res.data)
     if(type.value == 'login'){
         router.push('/home')
     }else{

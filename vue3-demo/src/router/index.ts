@@ -18,6 +18,11 @@ export default createRouter({
             path: '/login',
             component: () => import('@/views/Login/login.vue')
         },
+        // 商品详情
+        {
+            path:'/goods/detail',
+            component: () => import('@/views/Home/GoodsDetail.vue')
+        }
 
     ]
 

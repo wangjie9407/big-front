@@ -9,7 +9,7 @@
 
 import axios from '@/utils/axios'
 
-export function getDetail(id) {
+export function getDetail(id: string) {
   return axios.get(`/goods/detail/${id}`);
 }
 

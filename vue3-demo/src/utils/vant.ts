@@ -1,5 +1,5 @@
 // 引入vant组件
-import { Form, Field, CellGroup, NavBar, Button } from 'vant';
+import { Form, Field, CellGroup, NavBar, Button, Icon } from 'vant';
 
 const useVants = (app) => {
     app.use(Form)
@@ -7,6 +7,7 @@ const useVants = (app) => {
         .use(CellGroup)
         .use(NavBar)
         .use(Button)
+        .use(Icon)
 }
 
 export default useVants
