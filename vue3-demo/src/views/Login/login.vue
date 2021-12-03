@@ -1,5 +1,5 @@
 <template>
-    <van-nav-bar title="登录" left-arrow @click-left="getBack" />
+    <van-nav-bar title="登录" left-arrow @click-left="getBack(router)" />
     <section class="img-wrapper">
         <img class="logo" src="https://s.yezgea02.com/1604045825972/newbee-mall-vue3-app-logo.png" />
     </section>
@@ -33,7 +33,7 @@ import { useRouter } from 'vue-router'
 import { UserInfoType, UserItemType } from '@/apis/models/LoginModal'
 import { register, login } from '@/apis/service/user'
 import { Toast } from 'vant';
-import { setLocal } from '@/utils/Tools'
+import { setLocal, getBack } from '@/utils/Tools'
 import md5 from 'js-md5'
 
 const router = useRouter()
@@ -47,10 +47,6 @@ const userList: UserItemType[] = reactive([
     { label: '账号', key: 'loginName',type:'text' },
     { label: '密码', key: 'password', type: 'password' },
 ])
-// 返回
-const getBack = () => {
-    router.go(-1)
-}
 // 切换页面类型
 const changeType = () => {
     type.value = type.value == 'login' ? 'register' : 'login'

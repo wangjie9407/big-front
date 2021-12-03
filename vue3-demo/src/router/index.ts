@@ -22,7 +22,12 @@ export default createRouter({
         {
             path:'/goods/detail',
             component: () => import('@/views/Home/GoodsDetail.vue')
-        }
+        },
+        // 购物车
+        {
+            path:'/cart',
+            component: () => import('@/views/Home/CartList.vue')
+        },
 
     ]
 

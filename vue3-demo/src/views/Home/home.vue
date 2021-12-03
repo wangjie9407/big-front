@@ -1,20 +1,26 @@
 <template>
-  <sction class="list-wrapper" v-for="list in showList" :key="list.key">
+  <section class="list-wrapper" v-for="list in showList" :key="list.key">
     <div class="devide-wrapper">{{ list.label }}</div>
     <div class="list-content">
-      <section class="good-wrapper" @click="showDetail(good.goodsId)" v-for="good in homeData[list.key]" :key="good.goodsId">
-        <img :src="$filters.prefix(good.goodsCoverImg)" />
+      <section
+        class="good-wrapper"
+        @click="showDetail(good.goodsId)"
+        v-for="good in homeData[list.key]"
+        :key="good.goodsId"
+      >
+        <img :src="prefix(good.goodsCoverImg)" />
         <div class="title">{{ good.goodsIntro }}</div>
         <div class="price">{{ good.sellingPrice }}</div>
       </section>
     </div>
-  </sction>
+  </section>
 </template>
 
 <script lang="ts" setup>
 import { reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { getHome } from '@/apis/service/home'
+import { prefix } from '@/utils/Tools'
 import { GoodsType } from '@/apis/models/TradeModel'
 
 const router = useRouter()
@@ -32,6 +38,8 @@ const homeData: {
   newGoodses: [],
   recommendGoodses: []
 })
+
+// 获取商品列表
 const getGoodsList = async () => {
   const res: any = await getHome()
   if (!res || res.status != 200) return
@@ -40,14 +48,15 @@ const getGoodsList = async () => {
   keys.forEach(k => homeData[k] = data[k])
 }
 
+// 查看详情
 const showDetail = (id: number) => {
   router.push({
-    path:'/goods/detail',
-    query:{id}
+    path: '/goods/detail',
+    query: { id }
   })
 }
 
-onMounted(() => {getGoodsList()})
+onMounted(() => { getGoodsList() })
 </script>
 
 <style lang="less" scoped>
