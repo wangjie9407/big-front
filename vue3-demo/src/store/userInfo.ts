@@ -5,10 +5,7 @@ import { defineStore } from 'pinia'
     state:() => ({
         username:''
     }),
-    getters:{
-        username: (state) => state.username
-    },
-    actions:{
+     actions:{
         setUsername(name){
             this.username = name
         }

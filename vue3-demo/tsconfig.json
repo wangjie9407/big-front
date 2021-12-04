@@ -11,6 +11,7 @@
     "noUnusedLocals": true,
     "esModuleInterop": true,
     "noImplicitAny": false,
+    "plugins": [{"name": "typescript-plugin-css-modules"}],
     "lib": [
       "esnext",
       "dom"
@@ -29,6 +30,8 @@
     "src/**/*.vue",
     "types/**/*.d.ts",
     "**/*.ts",
+    "**/*.css",
+    "**/*.module.less",
     "components.d.ts",
     "babel.config.js",
     "vite.config.js",
@@ -38,5 +41,5 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }

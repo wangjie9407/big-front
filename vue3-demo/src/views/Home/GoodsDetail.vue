@@ -16,7 +16,9 @@
             <div>客服</div>
         </div>
         <div class="icon-text">
-            <van-icon name="shopping-cart-o" />
+            <van-badge :content="cart.len ? cart.len : '' ">
+                <van-icon name="shopping-cart-o" @click="showCartList" />
+            </van-badge>
             <div>购物车</div>
         </div>
         <div class="btn-wrapper">
@@ -32,12 +34,13 @@ import { reactive, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getDetail } from '@/apis/service/good'
 import { GoodsType } from '@/apis/models/TradeModel'
-import { passVal, getBack, prefix } from '@/utils/Tools'
+import { passVal, getBack, prefix, useRouterPush } from '@/utils/Tools'
 
 import useCart from '@/store/useCart'
 
 const route = useRoute()
 const router = useRouter()
+const push  = useRouterPush(router)
 const cart = useCart()
 
 let detailData: GoodsType = reactive({
@@ -59,8 +62,13 @@ async function getDetailData(id: string) {
 function addCart() {
     const { goodsCoverImg, sellingPrice, goodsName } = detailData
     cart.addOrderList({
-        url: goodsCoverImg, nums: 1, name: goodsName, price: sellingPrice
+        url: goodsCoverImg, nums: 1, name: goodsName, price: sellingPrice,checked: false
     })
+}
+
+function showCartList() {
+    push('/cart')
+
 }
 
 function buy() {
@@ -101,7 +109,7 @@ onMounted(() => {
     display: flex;
     position: fixed;
     align-items: center;
-    bottom: 0;
+    bottom: 50px;
     height: 50px;
     width: 100%;
     background-color: #fff;

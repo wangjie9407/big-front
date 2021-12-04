@@ -28,6 +28,11 @@ export default createRouter({
             path:'/cart',
             component: () => import('@/views/Home/CartList.vue')
         },
+        // 购物车
+        {
+            path:'/personal',
+            component: () => import('@/views/Login/Personal.vue')
+        },
 
     ]
 

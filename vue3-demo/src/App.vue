@@ -15,18 +15,30 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { ref, watch , onMounted} from 'vue'
 import { useRouter } from 'vue-router'
-import { useRouterPush } from '@/utils/Tools'
+import { useRouterPush, getLocal } from '@/utils/Tools'
+import useUserInfo from '@/store/userInfo'
 
 const push = useRouterPush(useRouter())
 const active = ref<String>('')
+const user = useUserInfo()
 watch(active, (val) => {
   const routeObj = {
     '0': () => push('/home'),
     '2': () => push('/cart'),
+    '3': () => push('/personal'),
   }
   routeObj[`${val}`] && routeObj[`${val}`]()
+})
+
+onMounted(() => {
+  const username = getLocal('user-name')
+    if(username){
+        user.setUsername(username)
+    }else{
+        push('/login')
+    }
 })
 </script>
 

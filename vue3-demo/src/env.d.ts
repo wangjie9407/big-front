@@ -15,4 +15,10 @@ declare module '*.vue' {
 }
 
 declare module '*.ts'
+declare module '*.tsx'
+
+declare module '*.css' {
+  const classes : {readonly [key: string] : string}
+  export default  classes
+}
 
