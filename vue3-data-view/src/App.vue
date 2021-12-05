@@ -1,21 +1,41 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
+import { ref, reactive } from "vue";
+
+const inverted = ref(true);
+const routerOptions = reactive([]);
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <div class="layout-wrapper">
+      <n-layout has-sider>
+        <n-layout-sider
+          bordered
+          show-trigger
+          collapse-mode="width"
+          :collapsed-width="64"
+          :width="240"
+          :native-scrollbar="false"
+          :inverted="inverted"
+        >
+          <n-menu
+            :inverted="inverted"
+            :collapsed-width="64"
+            :collapsed-icon-size="22"
+            :options="routerOptions"
+          />
+        </n-layout-sider>
+      </n-layout>
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="less" scoped>
+.layout-wrapper{
+  width: 100%;
+  height: 100%;
+  :deep(.n-layout){
+    height: 100%;
+    box-sizing: border-box;
+  }
 }
 </style>
