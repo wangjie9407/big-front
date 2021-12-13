@@ -1,0 +1,6 @@
+<van-cell
+  is-link
+  title="单元格"
+  link-type="navigateTo"
+  url="/pages/dashboard/index"
+/>
