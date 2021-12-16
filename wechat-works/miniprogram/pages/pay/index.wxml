@@ -1,0 +1,5 @@
+<van-row gutter="20">
+  <van-col span="8" offset="10">
+    <van-button round  type="primary" bindtap="pay">支 付</van-button>
+  </van-col>
+</van-row>

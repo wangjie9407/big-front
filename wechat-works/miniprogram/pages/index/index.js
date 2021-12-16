@@ -1,11 +1,14 @@
 // pages/index/index.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    routeList:[
+     {url: "/pages/pay/index", name:'支付dmeo'}
+    ]
   },
 
   /**
@@ -19,7 +22,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    const {$request} = app.globalData
   },
 
   /**
@@ -62,5 +65,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
 })

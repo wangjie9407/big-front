@@ -1,6 +1,8 @@
 <van-cell
+  wx:for="{{routeList}}"
+  wx:key="index"
   is-link
-  title="单元格"
+  title="{{item.name}}"
   link-type="navigateTo"
-  url="/pages/dashboard/index"
+  url="{{item.url}}"
 />

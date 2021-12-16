@@ -1,5 +1,3 @@
-import loadDir from './utils/loadDir.js'
-
 App({
   onLaunch: function () {
     if (!wx.cloud) {
@@ -12,12 +10,21 @@ App({
         //   如不填则使用默认环境（第一个创建的环境）
         // env: 'my-env-id',
         traceUser: true,
+
       })
 
-      const requireContext  = require('require-context')
-      const dir = requireContext('./pages')
-      console.log(dir)
     }
-    this.globalData = {}
+    this.globalData = {
+      $request: (option)=> {
+          return new Promise((resolve, reject) => {
+            wx.request({
+              ...option,
+              success(res){
+                resolve(res)
+              }
+            })
+          })
+      }
+    }
   }
 })
