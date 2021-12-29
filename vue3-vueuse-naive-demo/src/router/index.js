@@ -1,9 +1,7 @@
-import {createRouter, createWebHashHistory } from 'vue-router'
+import loadDir from '@/Utils/loadDir.js'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
-const files = require.cotext('../router')
-console.log(files)
-
-export default {
+export default createRouter({
     history: createWebHashHistory(),
-    routes:[]
-}
+    routes: loadDir(import.meta.globEager('./routes/*.js')),
+})
