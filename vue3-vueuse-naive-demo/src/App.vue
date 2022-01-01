@@ -1,39 +1,47 @@
 <script setup>
-import {  ref, onMounted,reactive } from 'vue';
+import { ref, onMounted,h } from 'vue';
+import {RouterLink } from 'vue-router'
 import loadDir from '@/Utils/loadDir.js'
 
 const collapsed = ref(false)
-let routes = reactive([])
+let routes = ref([])
 
 const initRoutes = () => {
   const loadRoutes = loadDir(import.meta.globEager('./router/routes/*.js'))
-  return loadRoutes.filter(e => e.meta).map(({ meta: { title: label }, path: href }) => ({ label, href, key: label }))
+  return loadRoutes.filter(e => e.meta).map(({ meta: { title: label }, path: href }) => ({
+    label: () => h(RouterLink, { to: { path: href } }, { default: () => label }),
+    href,
+    key: label
+  }))
 }
 
 onMounted(() => {
-   routes = routes.concat(initRoutes())
-   console.log('routes', routes)
+  routes.value = initRoutes()
 })
 </script>
 
 <template>
-    <n-layout has-sider style="height: 100%;">
-      <n-layout-sider
-        collapse-mode="transform"
-        :collapsed-width="120"
-        :width="240"
-        show-trigger="bar"
-        content-style="padding: 24px;"
-        bordered
-      >
-        <n-menu
-            :collapsed-width="64"
-            :collapsed-icon-size="22"
-            :options="routes"
-          />
-      </n-layout-sider>
-      <n-layout-content content-style="padding: 24px;"></n-layout-content>
-    </n-layout>
+  <n-layout has-sider style="height: 100%;">
+    <n-layout-sider
+      collapse-mode="transform"
+      :collapsed-width="120"
+      :width="240"
+      show-trigger="bar"
+      content-style="padding: 24px;"
+      bordered
+    >
+      <n-menu
+        :collapsed-icon-size="22"
+         :collapsed-width="164"
+        :options="routes"
+        :label-field="'label'"
+        :key-field="'key'"
+      />
+    </n-layout-sider>
+    <n-layout-content content-style="padding: 24px;">
+      <router-view></router-view>
+    </n-layout-content>
+  </n-layout>
 </template>
 
 <style lang="less" scoped>
