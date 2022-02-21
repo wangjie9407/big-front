@@ -17,6 +17,7 @@ const initRoutes = () => {
 
 onMounted(() => {
   routes.value = initRoutes()
+  console.log(routes.value)
 })
 </script>
 

@@ -74,7 +74,6 @@ type CheckableModel<DemoModel> = {
 }
 
 
-
 class Person implements Speakable{
     name: string;
     speak(): void {
@@ -82,3 +81,5 @@ class Person implements Speakable{
     }
     skill: (string | number)[];
 }
+
+const hero: ({name: string} & {sex: number}) = {name: 'john', sex: 1}
