@@ -1,4 +1,4 @@
-import * as Icons from '@element-plus/icons-vue'
+import { Icons } from "@/assets/const/icons";
 import {App} from 'vue'
 
 
