@@ -26,5 +26,12 @@ export default [
         meta:{
             title: 'chooseArea展示Demo'
         }
+    },
+    {
+        path:'/my-trend-demo',
+        component: () => import('@/views/my-trend-demo.vue'),
+        meta:{
+            title: 'my-trend展示Demo'
+        }
     }
 ]

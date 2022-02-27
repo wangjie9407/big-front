@@ -4,12 +4,11 @@ import Router from '@/router/index';
 import ElementPlus from 'element-plus'
 import './assets/styles/global.less'
 import createMyIconComponent from '@/components/my-icon'
+import MyComUI from '@/components'
 
 const app = createApp(App)
 
-// 全局注册图标组件
-createMyIconComponent(app)
-
 app.use(ElementPlus)
+.use(MyComUI)
 .use(Router)
 .mount('#app')

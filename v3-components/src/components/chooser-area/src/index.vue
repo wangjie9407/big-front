@@ -17,7 +17,8 @@
 import provinces from "@/assets/const/provinces";
 import cities from "@/assets/const/cities";
 import areas from "@/assets/const/areas";
-import { ref, Ref, reactive } from "vue";
+import { ref, Ref, reactive, watch, defineEmits } from "vue";
+import { stringify } from "querystring";
 
 
 const name = reactive({
@@ -30,8 +31,11 @@ const options = reactive({
     city: [] as string[],
     area: [] as string[]
 })
+const emits = defineEmits(['onSelectArea'])
 const cityOptions:Ref<string[]> = ref<string[]>([])
 const areaOptions:Ref<string[]> = ref<string[]>([])
+
+watch(name, (val) => emits('onSelectArea', val))
 
 // 根据所选项获取下级地区信息
 const onSelect = (area: (typeof cities | typeof areas), optionKey: keyof typeof options ,areaKey: keyof typeof area ) => {

@@ -27,6 +27,7 @@ import { ref, Ref, defineProps, withDefaults, onMounted, defineEmits } from "vue
 import { ElMessage } from "element-plus";
 import { Icons } from "@/assets/const/icons";
 import { useCopy } from '@/Utils/utils'
+import { emit } from "process";
 interface Props {
   width: string | number;
   visible: boolean;
@@ -36,7 +37,7 @@ const props = withDefaults(defineProps<Props>(), {
   width: "50%",
   visible: false,
 });
-const emits = defineEmits(["update:visible"]);
+const emits = defineEmits(["update:visible", 'selectIcon']);
 const icons: Ref<Array<string>> = ref([]);
 
 onMounted(() => {
@@ -61,6 +62,7 @@ const getAllIconsName = () => {
 const copyIcon = (icon: string) => {
   useCopy(`<my-icon-${icon}/>`)
   dialogChangeVisible(false)
+  emits('selectIcon', icon)
   ElMessage({
     message: `您已成功复制图标 <my-icon-${icon}/>`,
     type: "success",

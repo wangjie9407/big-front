@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import ChooseIcon from '@/components/choose-icon/src/index.vue'
 import {ref, watch} from 'vue'
 
 const visible = ref(false)
