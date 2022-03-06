@@ -33,5 +33,12 @@ export default [
         meta:{
             title: 'my-trend展示Demo'
         }
+    },
+    {
+        path:'/my-notification-demo',
+        component: () => import('@/views/notification-demo.vue'),
+        meta:{
+            title: 'my-notification展示Demo'
+        }
     }
 ]
