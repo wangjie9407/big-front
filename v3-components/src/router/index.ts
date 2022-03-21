@@ -1,7 +1,7 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
-import { useImportMeta } from '@/Utils/file'
+import { formatGlob} from '@/Utils/useGlobeager'
 
 export default createRouter({
     history: createWebHashHistory(),
-    routes: useImportMeta(import.meta.globEager('./routes/*.ts'))
+    routes: formatGlob(import.meta.globEager('./routes/*.ts'))
 })

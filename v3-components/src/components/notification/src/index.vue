@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-import DataModel from "./data.modle";
+import DataModel from "../../../Models/NotificationType";
 import { ref } from "vue";
 
 const props = defineProps<{

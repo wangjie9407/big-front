@@ -3,15 +3,7 @@
     <!-- 菜单栏 -->
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
       <el-scrollbar>
-        <el-menu router @select="">
-          <el-menu-item
-            v-for="item in menuList"
-            :key="item.path"
-            :index="item.path"
-            @click="oneMenuItenClick(item)"
-            >{{ item.meta.title }}</el-menu-item
-          >
-        </el-menu>
+        <MyMenu :menu="menuList"/>
       </el-scrollbar>
     </el-aside>
 
@@ -34,7 +26,7 @@
 <script lang="ts" setup>
 import { ref, Ref, onMounted } from "vue";
 import { RouteRecordRaw } from "vue-router";
-import { useImportMeta } from "@/Utils/file";
+import { formatGlob } from "@/Utils/useGlobeager";
 
 const menuList: Ref<({ meta: { title: string } } & RouteRecordRaw)[]> = ref([]);
 const title: Ref<string> = ref("");
@@ -42,9 +34,7 @@ const title: Ref<string> = ref("");
 onMounted(() => initMenuList());
 
 function initMenuList() {
-  const routes: RouteRecordRaw[] = useImportMeta(
-    import.meta.globEager("/src/router/routes/*.ts")
-  );
+  const routes: RouteRecordRaw[] = formatGlob(import.meta.globEager("/src/router/routes/*.ts"));
   menuList.value = routes as ({ meta: { title: string } } & RouteRecordRaw)[];
 }
 
